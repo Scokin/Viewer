@@ -4,7 +4,7 @@ const fs = require('fs');
 
 app.commandLine.appendSwitch('no-sandbox'); // temporary for dev
 app.commandLine.appendSwitch('disable-gpu');
-
+app.commandLine.appendSwitch('disable-dev-shm-usage');
 function createWindow() {
   const win = new BrowserWindow({
     width: 1200,
