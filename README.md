@@ -1,4 +1,4 @@
-# 📂 File Previewer App
+# File Previewer App
 
 A lightweight desktop application built with **Electron** that lets you explore folders and preview various file types — including **PDF, SVG, PNG, JPG, text, and more**. Ideal for working with mixed technical files like schematics, documentation, and assets.
 
@@ -70,30 +70,6 @@ file-previewer-app/
 | `.png`, `.jpg`, `.gif` | Zoomable preview |
 | `.txt`, `.json`, `.html`, `.css`, `.js` | Raw text display |
 | Others        | Not previewed (fallback message) |
-
----
-
-## 🛠 Troubleshooting
-
-### Linux: sandbox errors or `/dev/shm` issues?
-
-If Electron crashes with sandbox or shared memory issues, try:
-
-```bash
-sudo chmod 1777 /dev/shm
-```
-
-Or run Electron without the sandbox (already handled in code):
-
-```js
-app.commandLine.appendSwitch('no-sandbox');
-```
-
----
-
-## 📜 License
-
-MIT — Use it freely, contribute if you like!
 
 ---
 
