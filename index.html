@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>File Explorer</title>
+    <style>
+      body { font-family: sans-serif; display: flex; height: 100vh; margin: 0; }
+      #file-list { width: 50%; overflow-y: auto; border-right: 1px solid #ccc; padding: 10px; }
+      #preview { flex-grow: 1; padding: 10px; overflow: auto; }
+      li { cursor: pointer; margin: 5px 0; }
+    </style>
+  </head>
+  <body>
+    <div id="file-list">
+      <button id="browse">Browse Folder</button>
+      <ul id="files"></ul>
+    </div>
+    <div id="preview"><em>No file selected</em></div>
+    <script src="renderer.js"></script>
+  </body>
+</html>
