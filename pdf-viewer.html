@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>PDF Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        overflow: auto;
+        background: #f8f8f8;
+      }
+      canvas.pdf-page {
+        display: block;
+        margin: 20px auto;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        max-width: 95vw;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const file = urlParams.get('file');
+
+      const scale = 2.0; // 🔧 tweak as needed
+
+      const loadingTask = pdfjsLib.getDocument(file);
+      loadingTask.promise.then(pdf => {
+        for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+          pdf.getPage(pageNum).then(page => {
+            const viewport = page.getViewport({ scale });
+            const canvas = document.createElement('canvas');
+            canvas.className = 'pdf-page';
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            document.body.appendChild(canvas);
+
+            const context = canvas.getContext('2d');
+            const renderContext = { canvasContext: context, viewport: viewport };
+            page.render(renderContext);
+          });
+        }
+      }).catch(err => {
+        document.body.innerHTML = `<pre>${err.message}</pre>`;
+      });
+    </script>
+  </body>
+</html>
