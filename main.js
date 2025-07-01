@@ -2,6 +2,9 @@ const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
+app.commandLine.appendSwitch('no-sandbox'); // temporary for dev
+app.commandLine.appendSwitch('disable-gpu');
+
 function createWindow() {
   const win = new BrowserWindow({
     width: 1200,
